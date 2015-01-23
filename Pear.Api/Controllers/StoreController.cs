@@ -19,7 +19,20 @@
             var stores = dbPear.fnGetStoresByDistance(curLatitude, curLongitude, maxDistance);
             var apiResponse = new StoreApiResponse(stores.ToList());
 
-            return Ok(stores);
+            return Ok(apiResponse);
+        }
+
+        [Route("{storeId:int}")]
+        public IHttpActionResult GetStore(int storeId)
+        {
+            var store = dbPear.Stores.Find(storeId);
+            
+            if (store == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(store);
         }
     }
 }
