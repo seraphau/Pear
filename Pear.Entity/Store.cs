@@ -21,5 +21,6 @@ namespace Pear.Entity
         public Nullable<float> Latitude { get; set; }
         public Nullable<float> Longitude { get; set; }
         public System.DateTime CreatedDate { get; set; }
+        public string Logo { get; set; }
     }
 }
