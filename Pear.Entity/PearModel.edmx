@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="PearModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="PearModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AdImage">
           <Key>
             <PropertyRef Name="ImageId" />
@@ -61,7 +61,6 @@
           <Property Name="StoreId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MerchantId" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Logo" Type="nvarchar" MaxLength="50" />
           <Property Name="Address" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="Latitude" Type="real" />
           <Property Name="Longitude" Type="real" />
@@ -113,6 +112,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="fnGetStoresByDistance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="latitude" Type="real" Mode="In" />
+          <Parameter Name="longitude" Type="real" Mode="In" />
+          <Parameter Name="maxDistance" Type="real" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="StoreId" Type="int" Nullable="false" />
+                <Property Name="MerchantId" Type="int" Nullable="false" />
+                <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+                <Property Name="Address" Type="nvarchar" MaxLength="200" Nullable="false" />
+                <Property Name="Latitude" Type="real" />
+                <Property Name="Longitude" Type="real" />
+                <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
         <EntityContainer Name="PearModelStoreContainer">
           <EntitySet Name="AdImage" EntityType="Self.AdImage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Advertisement" EntityType="Self.Advertisement" Schema="dbo" store:Type="Tables" />
@@ -134,7 +151,8 @@
             <End Role="MerchantReview" EntitySet="MerchantReview" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PearModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -213,7 +231,6 @@
           <Property Name="Latitude" Type="Single" />
           <Property Name="Longitude" Type="Single" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Logo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -350,7 +367,6 @@
           <EntitySetMapping Name="Stores">
             <EntityTypeMapping TypeName="PearModel.Store">
               <MappingFragment StoreEntitySet="Store">
-                <ScalarProperty Name="Logo" ColumnName="Logo" />
                 <ScalarProperty Name="StoreId" ColumnName="StoreId" />
                 <ScalarProperty Name="MerchantId" ColumnName="MerchantId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -372,6 +388,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionName="PearModel.Store.fnGetStoresByDistance" FunctionImportName="fnGetStoresByDistance">
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
