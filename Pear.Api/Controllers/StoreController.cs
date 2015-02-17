@@ -17,9 +17,9 @@
         public IHttpActionResult GetStoresWithinDistance(float curLatitude, float curLongitude, float maxDistance)
         {
             var stores = dbPear.fnGetStoresByDistance(curLatitude, curLongitude, maxDistance);
-            var apiResponse = new StoreApiResponse(stores.ToList());
+            var response = new StoreApiResponse(stores.ToList());
 
-            return Ok(apiResponse);
+            return Ok(response);
         }
 
         [Route("{storeId:int}")]
@@ -31,6 +31,21 @@
             {
                 return NotFound();
             }
+
+            return Ok(store);
+        }
+
+        public IHttpActionResult PostStore(int merchantId, string name, string address)
+        {
+            var store = new Store();
+
+            store.MerchantId = merchantId;
+            store.Name = name;
+            store.Address = address;
+            store.CreatedDate = DateTime.Now;
+
+            dbPear.Stores.Add(store);
+            dbPear.SaveChanges();
 
             return Ok(store);
         }

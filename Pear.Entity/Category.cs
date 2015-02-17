@@ -12,15 +12,11 @@ namespace Pear.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class Store
+    public partial class Category
     {
-        public int StoreId { get; set; }
-        public int MerchantId { get; set; }
+        public int CategoryId { get; set; }
         public string Name { get; set; }
-        public string Address { get; set; }
-        public Nullable<float> Latitude { get; set; }
-        public Nullable<float> Longitude { get; set; }
+        public int ParentCategoryId { get; set; }
         public System.DateTime CreatedDate { get; set; }
-        public string Logo { get; set; }
     }
 }

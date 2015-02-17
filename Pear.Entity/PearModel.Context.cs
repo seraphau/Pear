@@ -34,6 +34,7 @@ namespace Pear.Entity
         public virtual DbSet<MerchantReview> MerchantReviews { get; set; }
         public virtual DbSet<Store> Stores { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
     
         [DbFunction("PearEntities", "fnGetStoresByDistance")]
         public virtual IQueryable<Store> fnGetStoresByDistance(Nullable<float> latitude, Nullable<float> longitude, Nullable<float> maxDistance)

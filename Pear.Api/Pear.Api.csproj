@@ -85,12 +85,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AdController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ControllerBase.cs" />
+    <Compile Include="Controllers\MerchantController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AdApiResponse.cs" />
     <Compile Include="Models\ApiResponseBase.cs" />
+    <Compile Include="Models\CategoryApiResponse.cs" />
     <Compile Include="Models\ResponseBase.cs" />
     <Compile Include="Models\StoreApiResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -15,6 +15,7 @@
         <AssociationConnector Association="PearModel.FK_AdImage_Advertisement" ManuallyRouted="false" />
         <AssociationConnector Association="PearModel.FK_Advertisement_Merchant" ManuallyRouted="false" />
         <AssociationConnector Association="PearModel.FK_MerchantReview_Merchant" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="PearModel.Category" Width="1.5" PointX="0.75" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

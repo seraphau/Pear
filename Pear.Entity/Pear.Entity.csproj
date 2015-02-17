@@ -54,6 +54,9 @@
     <Compile Include="Advertisement.cs">
       <DependentUpon>PearModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Category.cs">
+      <DependentUpon>PearModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Consumer.cs">
       <DependentUpon>PearModel.tt</DependentUpon>
     </Compile>
@@ -96,6 +99,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>PearModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="PearDB.bak" />
     <None Include="PearModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>PearModel.edmx</DependentUpon>
@@ -114,7 +118,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Functions.sql" />
+    <Content Include="Scripts\Functions.sql" />
+    <Content Include="Scripts\Tables.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
